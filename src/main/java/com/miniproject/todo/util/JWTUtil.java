@@ -19,7 +19,7 @@ public class JWTUtil {
     @Value("${application.jwt.secret_key:U4W?pU9xX%*C6*G4&-&Eqwxr-B%jMQ}")
     private String SECRET_KEY;
 
-    public String exactUserName(String token) {
+    public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
 
     }
@@ -55,7 +55,7 @@ public class JWTUtil {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = exactUserName(token);
+        final String username = extractUserName(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
