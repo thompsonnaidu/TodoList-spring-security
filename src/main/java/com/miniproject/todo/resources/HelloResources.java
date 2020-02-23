@@ -1,13 +1,16 @@
 package com.miniproject.todo.resources;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloResources {
-    @RequestMapping(value="/",method = {RequestMethod.GET})
+    @RequestMapping(value="/hello",method = {RequestMethod.GET})
     public String sayHello(){
-        return "welcome";
+        return "Hello world";
+    }
+
+    @GetMapping("/{user}")
+    public String welcomeUser(@PathVariable String user){
+        return "<h1>Welcome "+user+"</h1>";
     }
 }
